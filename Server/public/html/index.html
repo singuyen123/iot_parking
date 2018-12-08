@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <script src="/socket.io/socket.io.js"></script>
+<body>
+
+
+    <p>My first paragraph.</p>
+
+   
+    <input id='txt1' type="text" />
+    <input id='txt2' type="text"/>
+    <input type="button" onclick="btn_click()" value="signup_card"/>
+    <input type="button" onclick="btn_click2()" value="signup_member"/>
+    <input id="btn" type="button" onclick="btn_click3()" value="parking"/>
+    <input type="button" onclick="btn_click4()" value="end_devide"/>
+    <script>
+        var socket = io();
+        socket.on('connect', () => {
+        });
+        socket.on("result_end_devide",function(msg){
+            document.getElementById("btn").disabled = true;
+        })
+        function btn_click() {
+            var txt = document.getElementById('txt2').value;
+            console.log(txt);
+            socket.emit('signup_card', txt)
+        }
+        
+        function btn_click2() {
+            var txt = document.getElementById('txt2').value;
+            socket.emit('signup_member', txt)
+        }
+
+        function btn_click3() {
+            var txt= document.getElementById('txt1').value;
+            var txt2= document.getElementById('txt2').value;
+            socket.emit('parking', {'id':txt,'car_code':txt2})
+        }
+        function btn_click4() {
+            socket.emit('end_devide',true)
+        }
+    </script>
+</body>
+
+</html>
