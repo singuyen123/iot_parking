@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Iot Parking</title>
+  <link rel="stylesheet" type="text/css" href="public/css/iot_parking.css">
+</head>
+
+<body>
+  <h1 align="middle">IOT PARKING LOT</h1> 
+    <div class="form">
+      <form class="register-form">
+        <table border=1>
+          <tr>
+            <th>Name</th>
+            <th>address</th>
+            <th>amount</th>
+            <th>free space</th>
+            <th>space</th>
+          </tr>
+      
+          <tr>
+            <td id="nameA"></td>
+            <td id="addressA"></td>
+            <td id="amountA"></td>
+            <td id="fSpaceA"></td>
+            <td>
+              <a href = '/b' target="_self">see more</a>
+            </td>
+          </tr>
+      
+          <tr>
+            <td id="nameB"></td>
+            <td id="addressB"></td>
+            <td id="amountB"></td>
+            <td id="fSpaceB"></td>
+            <td>
+              <a href = '/a' target="_self">see more</a>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+
+
+
+
+ 
+  
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io()
+    var socket = io()
+    socket.emit('type','index');
+    socket.on('res_index',function(msg){
+      document.getElementById('nameA').innerHTML = msg[0].name;
+      document.getElementById('addressA').innerHTML = msg[0].address;
+      document.getElementById('amountA').innerHTML = msg[0].amount;
+      document.getElementById('fSpaceA').innerHTML = msg[0].freeSlot;
+      document.getElementById('nameB').innerHTML = msg[1].name;
+      document.getElementById('addressB').innerHTML = msg[1].address;
+      document.getElementById('amountB').innerHTML = msg[1].amount;
+      document.getElementById('fSpaceB').innerHTML = msg[1].freeSlot;
+    })
+    
+  </script>
+
+</body>
+
+</html>

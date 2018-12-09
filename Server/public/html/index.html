@@ -1,44 +1,46 @@
 <!DOCTYPE html>
 <html>
     <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" type="text/css" href="/public/css/index.css">
 <body>
 
 
-    <p>My first paragraph.</p>
+    <h1 align="middle">IOT PARKING LOT</h1> 
+    <div class="form">
+      <form class="register-form">
+            <input id='txt' type="text" />
+            <input id="btn" type="button" onclick="btn_click()" value="parking"/>
+            <input id="btn1" type="button" onclick="btn_click1()" value="parking"/>
+      </form>
+    </div>
 
    
-    <input id='txt1' type="text" />
-    <input id='txt2' type="text"/>
-    <input type="button" onclick="btn_click()" value="signup_card"/>
-    <input type="button" onclick="btn_click2()" value="signup_member"/>
-    <input id="btn" type="button" onclick="btn_click3()" value="parking"/>
-    <input type="button" onclick="btn_click4()" value="end_devide"/>
+    
     <script>
         var socket = io();
+        document.getElementById("btn").disabled = true;
+        document.getElementById("txt").disabled = true;
         socket.on('connect', () => {
+            
         });
-        socket.on("result_end_devide",function(msg){
-            document.getElementById("btn").disabled = true;
+        socket.on('request_car_code',function(){
+            console.log('1');
+            document.getElementById("btn").disabled = false;
+            document.getElementById("txt").disabled = false;
         })
         function btn_click() {
-            var txt = document.getElementById('txt2').value;
+            var txt = document.getElementById('txt').value;
+            document.getElementById("btn").disabled = true;
+            document.getElementById("txt").disabled = true;
+            socket.emit('response_car_code', txt);
+        }
+        function btn_click1() {
+            var txt = {'id':'1', 'name': 'UIT'}
             console.log(txt);
-            socket.emit('signup_card', txt)
+            socket.emit('parking', txt);
         }
         
-        function btn_click2() {
-            var txt = document.getElementById('txt2').value;
-            socket.emit('signup_member', txt)
-        }
-
-        function btn_click3() {
-            var txt= document.getElementById('txt1').value;
-            var txt2= document.getElementById('txt2').value;
-            socket.emit('parking', {'id':txt,'car_code':txt2})
-        }
-        function btn_click4() {
-            socket.emit('end_devide',true)
-        }
+        
     </script>
 </body>
 

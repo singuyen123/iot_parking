@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>NFC_System</title>
+  <link rel="stylesheet" type="text/css" href="public/css/b.css">
+</head>
+
+<body>
+    <h1 align="middle">IOT PARKING LOT</h1> 
+    <div class="form">
+      <form class="register-form">
+          <table border=1>
+              <tr>
+                <td id=1 bgcolor="lime" align="middle" width=100 height=100>1</td>
+                <td id=2 bgcolor="lime" align="middle" width=100 height=100>2</td>
+                <td id=3 bgcolor="lime" align="middle" width=100 height=100>3</td>
+              </tr>
+          
+              <tr>
+                <td id=4 bgcolor="lime" align="middle" width=100 height=100>4</td>
+                <td id=5 bgcolor="lime" align="middle" width=100 height=100>5</td>
+                <td id=6 bgcolor="lime" align="middle" width=100 height=100>6</td>
+              </tr>
+          
+            </table>
+      </form>
+    </div>
+  
+
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+    socket.emit('type','b');
+    socket.on('res_b',function(msg){
+      for (i = 0; i < msg; i++) {
+        document.getElementById((i + 1).toString()).style.backgroundColor = 'red';
+      }
+    })
+
+  </script>
+
+</body>
+
+</html>

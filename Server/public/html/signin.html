@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="public/css/signin.css">
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script src="/public/js/signin.js"></script>
+
+
+<body>
+
+  <div class="login-page">
+    <div class="form">
+      <form class="register-form">
+          <p id="message1" style="color: red; visibility: hidden;">Message</p>
+        <input type="text" placeholder="name" id="signup_user" name="signup_user" />
+        <input type="password" placeholder="password" id="signup_pass" name="signup_pass" />
+        <input type="text" placeholder="email address" id="signup_email" name="signup_email" />
+        <button onclick="btn_signup()"  type="button" >create</button>
+        <p class="message">Already registered?
+          <a>Sign In</a>
+        </p>
+      </form>
+      <form class="login-form">
+        <p id="message" style="color: red; visibility: hidden;">Message</p>
+        <input type="text" placeholder="username" id="username" name="username" />
+        <input type="password" placeholder="password" id="pass" name="pass" />
+        <button onclick="btn_login()"  type="button" >login</button>
+        <p class="message">Not registered?
+          <a href="#">Create an account</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
